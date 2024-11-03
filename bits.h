@@ -1,3 +1,21 @@
+/*
+ * File
+ * 	bits.h
+ *
+ * Brief
+ * 	definiciones de bits y tipo de dato booleano para TRUE o FALSE
+ *
+ * Authors
+ *  Rodrigo Ramos Romero
+ *	Gerardo Padilla Torres
+ * Date
+ *  29/11/2024
+ * todo
+ *
+ */
+
+
+
 #ifndef BITS_H_
 #define BITS_H_
 
