@@ -1,0 +1,4 @@
+C:\MCUXpresso\UART Workspace\T9_LCD_Nokia\drivers/fsl_clock.h:668:20:CLOCK_EnableClock	24	static
+C:\MCUXpresso\UART Workspace\T9_LCD_Nokia\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+../source/SPI.c:34:6:SPI_config	56	static
+../source/SPI.c:108:6:Receive_Data	64	static
