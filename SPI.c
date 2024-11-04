@@ -11,7 +11,7 @@
  * Date
  *  29/11/2024
  * todo
- *
+ * clean up externs for protocol
  */
 
 /* TODO: insert other include files here. */
@@ -56,18 +56,18 @@ void SPI_config(void)
 	PORT_SetPinConfig(PORTD, PIN2_IDX, &button_config);
 	PORT_SetPinConfig(PORTD, PIN3_IDX, &button_config);
 
-	/*configuracion LCD */
+	/*LCD Configuration*/
 	dspi_master_config_t masterConfig;
 
 	masterConfig.whichCtar                                = kDSPI_Ctar0;
 	masterConfig.ctarConfig.baudRate                      = TRANSFER_BAUDRATE;
-	masterConfig.ctarConfig.bitsPerFrame                  = 8U;
+	masterConfig.ctarConfig.bitsPerFrame                  = Frame_bits;
 	masterConfig.ctarConfig.cpol                          = kDSPI_ClockPolarityActiveHigh;
 	masterConfig.ctarConfig.cpha                          = kDSPI_ClockPhaseFirstEdge;
 	masterConfig.ctarConfig.direction                     = kDSPI_MsbFirst;
-	masterConfig.ctarConfig.pcsToSckDelayInNanoSec        = 1000000000U / TRANSFER_BAUDRATE;
-	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = 1000000000U / TRANSFER_BAUDRATE;
-	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = 1000000000U / TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.pcsToSckDelayInNanoSec        = Nano_second / TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = Nano_second / TRANSFER_BAUDRATE;
+	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = Nano_second / TRANSFER_BAUDRATE;
 
 	masterConfig.whichPcs           = kDSPI_Pcs0;
 	masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
@@ -81,17 +81,17 @@ void SPI_config(void)
 	DSPI_MasterInit(EXAMPLE_DSPI_MASTER_BASEADDR, &masterConfig, srcClock_Hz);
 
 
-	/* Configuracion memoria */
+	/*Memory Configuration */
 
 	masterConfig.whichCtar                                = kDSPI_Ctar1;
 	masterConfig.ctarConfig.baudRate                      = TRANSFER_BAUDRATE_MEMORY;
-	masterConfig.ctarConfig.bitsPerFrame                  = 8U;
+	masterConfig.ctarConfig.bitsPerFrame                  = Frame_bits;
 	masterConfig.ctarConfig.cpol                          = kDSPI_ClockPolarityActiveLow;
 	masterConfig.ctarConfig.cpha                          = kDSPI_ClockPhaseSecondEdge;
 	masterConfig.ctarConfig.direction                     = kDSPI_MsbFirst;
-	masterConfig.ctarConfig.pcsToSckDelayInNanoSec        = 1000000000U / TRANSFER_BAUDRATE_MEMORY;
-	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = 1000000000U / TRANSFER_BAUDRATE_MEMORY;
-	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = 1000000000U / TRANSFER_BAUDRATE_MEMORY;
+	masterConfig.ctarConfig.pcsToSckDelayInNanoSec        = Nano_second / TRANSFER_BAUDRATE_MEMORY;
+	masterConfig.ctarConfig.lastSckToPcsDelayInNanoSec    = Nano_second / TRANSFER_BAUDRATE_MEMORY;
+	masterConfig.ctarConfig.betweenTransferDelayInNanoSec = Nano_second / TRANSFER_BAUDRATE_MEMORY;
 
 	masterConfig.whichPcs           = kDSPI_Pcs1;
 	masterConfig.pcsActiveHighOrLow = kDSPI_PcsActiveLow;
@@ -116,33 +116,33 @@ void Recive_Data(uint8_t x){
 
 	switch(x){
 	case bit_1:
-		TransferMemory.txData					= g_master_txADDRImage_1;
-		TransferMemory.rxData					= g_master_rxBuffImage_1;
+		TransferMemory.txData = g_master_txADDRImage_1;
+		TransferMemory.rxData = g_master_rxBuffImage_1;
 		break;
 
 	case bit_2:
-		TransferMemory.txData					= g_master_txADDRImage_2;
-		TransferMemory.rxData					= g_master_rxBuffImage_2;
+		TransferMemory.txData = g_master_txADDRImage_2;
+		TransferMemory.rxData = g_master_rxBuffImage_2;
 		break;
 
 	case bit_3:
-		TransferMemory.txData					= g_master_txADDRImage_3;
-		TransferMemory.rxData					= g_master_rxBuffImage_3;
+		TransferMemory.txData = g_master_txADDRImage_3;
+		TransferMemory.rxData = g_master_rxBuffImage_3;
 		break;
 
 	case bit_4:
-		TransferMemory.txData					= g_master_txADDRImage_4;
-		TransferMemory.rxData					= g_master_rxBuffImage_4;
+		TransferMemory.txData = g_master_txADDRImage_4;
+		TransferMemory.rxData = g_master_rxBuffImage_4;
 		break;
 
 	case bit_5:
-		TransferMemory.txData					= g_master_txADDRImage_5;
-		TransferMemory.rxData					= g_master_rxBuffImage_5;
+		TransferMemory.txData = g_master_txADDRImage_5;
+		TransferMemory.rxData = g_master_rxBuffImage_5;
 		break;
 
 	default:
-		TransferMemory.txData					= g_master_txADDRImage_1;
-		TransferMemory.rxData					= g_master_rxBuffImage_1;
+		TransferMemory.txData = g_master_txADDRImage_1;
+		TransferMemory.rxData = g_master_rxBuffImage_1;
 		break;
 	}
 

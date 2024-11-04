@@ -31,12 +31,12 @@
 #define EXAMPLE_DSPI_DEALY_COUNT             0xfffffU
 
 /*Definiciones para la transferencia de datos, tamanos y baudrates */
-#define TRANSFER_SIZE     				64U     /*! Transfer dataSize */
-#define TRANSFER_BAUDRATE 				1000000U /*! Transfer baudrate - 1M */
-#define TRANSFER_BAUDRATE_MEMORY 		2000000U /*! Transfer baudrate - 2M */
-#define IMAGE_MEMORY_SIZE				504		/* Images have size of 504 bytes */
+#define TRANSFER_SIZE     				64U
+#define TRANSFER_BAUDRATE 				1000000U //1 MHz for the LCD
+#define TRANSFER_BAUDRATE_MEMORY 		2000000U //2 Mhz for the Memory
+#define IMAGE_MEMORY_SIZE				504		//504 bytes for the images
 
-/* Pines a usar para evitar magic numbers*/
+/*Pins to clean up magic numbers*/
 #define PIN0_IDX 	0u
 #define PIN1_IDX 	1u
 #define PIN2_IDX 	2u
@@ -44,8 +44,12 @@
 #define PIN16_IDX  	16u
 #define PIN17_IDX 	17u
 
+/*Definitions to clean up magi numbers */
+#define Frame_bits  8U
+#define Nano_second 1000000000U
+
 /*!
- * \brief configuracion para hacer transferencias con SPI
+ * \brief configuration for SPI protocol transfers
  *
  * \param[in] void
  * \return void
@@ -53,7 +57,7 @@
 void SPI_config(void);
 
 /*!
- * \brief funcion para recibir datos con SPI
+ * \brief Receive data with SPI protocol
  *
  * \param[in] uint8_t
  * \return void
