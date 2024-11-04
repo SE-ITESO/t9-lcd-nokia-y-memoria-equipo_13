@@ -16,23 +16,85 @@
  */
  
 /* TODO: insert other include files here. */
-
+#include "LCD_nokia.h"
+#include "LCD_nokia_images.h"
 #include "stdint.h"
-
+#include "SPI.h"
 #include "Delay.h"
 #include "bits.h"
 
-/* TODO: insert other definitions and declarations here. */
-#define IMAGE_SIZE 				504
+#define IMAGE_SIZE 504
 
+/* Avoid using extern for variables, prefer static or encapsulation in functions */
+static const uint8_t ITESO[IMAGE_SIZE];
+static uint8_t g_master_rxBuffImage_1[IMAGE_SIZE];
+static uint8_t g_master_rxBuffImage_2[IMAGE_SIZE];
+static uint8_t g_master_rxBuffImage_3[IMAGE_SIZE];
+static uint8_t g_master_rxBuffImage_4[IMAGE_SIZE];
+static uint8_t g_master_rxBuffImage_5[IMAGE_SIZE];
 
-extern uint8_t g_master_rxBuffImage_1[IMAGE_SIZE];
-
+static void receive_data(uint8_t bit);
 
 int main(void)
 {
+    SPI_config();
+    LCD_nokia_init(); /* Configuration function for the LCD */
 
+    for (;;)
+    {
+        LCD_nokia_clear(); /* It clears the information printed in the LCD */
+        LCD_nokia_bitmap(ITESO); /* It prints an array that holds an image, in this case the initial picture */
+        delay(65000);
 
-	return 0;
+        LCD_nokia_clear();
+        for (int i = 0; i < 5; i++)
+        {
+            receive_data(bit_1);
+        }
+        LCD_nokia_bitmap(g_master_rxBuffImage_1);
+        delay(65000);
+
+        LCD_nokia_clear();
+        receive_data(bit_1);
+        receive_data(bit_5);
+        receive_data(bit_4);
+        receive_data(bit_3);
+        receive_data(bit_2);
+        LCD_nokia_bitmap(g_master_rxBuffImage_2);
+        delay(65000);
+
+        LCD_nokia_clear();
+        receive_data(bit_2);
+        receive_data(bit_1);
+        receive_data(bit_5);
+        receive_data(bit_4);
+        receive_data(bit_3);
+        LCD_nokia_bitmap(g_master_rxBuffImage_3);
+        delay(65000);
+
+        LCD_nokia_clear();
+        for (int i = 0; i < 5; i++)
+        {
+            receive_data(bit_4);
+        }
+        LCD_nokia_bitmap(g_master_rxBuffImage_4);
+        delay(65000);
+
+        LCD_nokia_clear();
+        receive_data(bit_1);
+        receive_data(bit_2);
+        receive_data(bit_3);
+        receive_data(bit_4);
+        receive_data(bit_5);
+        LCD_nokia_bitmap(g_master_rxBuffImage_5);
+        delay(65000);
+    }
+
+    return 0;
+}
+
+static void receive_data(uint8_t bit)
+{
+    /* Implementation of receive_data function */
 }
 
