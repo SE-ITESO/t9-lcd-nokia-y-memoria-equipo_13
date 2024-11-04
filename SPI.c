@@ -105,7 +105,7 @@ void SPI_config(void)
 
 }
 
-void Recive_Data(uint8_t x){
+void Receive_Data(uint8_t x){
 	dspi_half_duplex_transfer_t TransferMemory;
 
 	uint8_t g_master_txADDRImage_1[bit_4] = {0x03, 0x04, 0x00, 0x00};

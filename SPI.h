@@ -62,6 +62,6 @@ void SPI_config(void);
  * \param[in] uint8_t
  * \return void
  */
-void Recive_Data(uint8_t x);
+void Receive_Data(uint8_t x);
 
 #endif /* SPI_H_ */
